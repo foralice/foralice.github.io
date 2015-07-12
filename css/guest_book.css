@@ -1,0 +1,136 @@
+/*
+ * GuestBook
+ */
+
+.guestBook {
+  margin: 15px auto 30px;
+  max-width: 450px;
+}
+
+.guestBook-entryConfirmed {
+  background: #fff6d3;
+  border: 1px solid #ffd020;
+  padding: 3px 10px;
+}
+
+.guestBook-button {
+  background: none;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  font: 14px/18px 'Suranna', serif;
+  margin: 0 auto;
+  padding: 3px 10px;
+}
+
+.guestBook-button:hover {
+  border-color: black;
+}
+
+.guestBook-button[disabled] {
+  background: #ddd;
+  color: #555;
+}
+
+.guestBook-entries {
+  list-style: none;
+  margin: 30px 0;
+  padding: 0;
+  text-align: left;
+}
+
+/*
+ * GuestBookEntryView
+ */
+
+.guestBookEntryView {
+  padding: 10px 0;
+}
+
+.guestBookEntryView-name {
+  font: bold 14px 'Georgia', serif;
+}
+
+.guestBookEntryView-date {
+  color: #777;
+  font-size: smaller;
+  margin-left: 10px;
+}
+
+.guestBookEntryView-location {
+  color: #777;
+  font-size: smaller;
+  font-style: italic;
+  margin-left: 10px;
+}
+
+.guestBookEntryView-message {
+  margin: 0;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+/*
+ * GuestBookInput
+ */
+
+.guestBookInput {
+  text-align: left;
+}
+
+.guestBookInput-field {
+  margin-bottom: 10px;
+}
+
+.guestBookInput-label {
+  display: inline-block;
+  float: left;
+  margin-right: 15px;
+  text-align: right;
+  vertical-align: top;
+  width: 80px;
+}
+
+.guestBookInput-input {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  display: block;
+  font: 16px 'Georgia', serif;
+  padding: 3px 5px;
+  width: 250px;
+}
+
+.guestBookInput-input[disabled] {
+  background: #ddd;
+}
+
+.guestBookInput-messageTextInput {
+  font-size: 14px;
+  min-height: 75px;
+  resize: none;
+}
+
+.guestBookInput-footer {
+  margin: 20px 0 30px;
+}
+
+.guestBookInput-submitButton {
+  margin-left: 95px;
+}
+
+.guestBookInput-cancelButton {
+  margin-left: 10px;
+}
+
+.guestBookInput-preview {
+  border: 1px solid #ddd;
+  margin: 15px -15px 0;
+  padding: 10px 15px 0;
+}
+
+.guestBookInput-previewLabel {
+  color: #aaa;
+  font-size: 10px;
+  text-transform: uppercase;
+}
