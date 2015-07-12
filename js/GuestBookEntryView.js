@@ -5,6 +5,7 @@ var MONTHS = ["January", "February", "March", "April", "May", "June",
  * interface Props {
  *   authorName: string;
  *   entryDate: Date;
+ *   location: string;
  *   messageText: string;
  * }
  */
@@ -41,6 +42,9 @@ var GuestBookEntryView = React.createClass({
       React.DOM.span({
         className: "guestBookEntryView-date"
       }, this._renderTimestamp(this.props.entryDate)),
+      React.DOM.span({
+        className: "guestBookEntryView-location"
+      }, this.props.location),
       React.DOM.p({
         children: this._renderMessage(this.props.messageText),
         className: "guestBookEntryView-message"

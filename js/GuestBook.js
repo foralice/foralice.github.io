@@ -19,6 +19,7 @@ var GuestBook = React.createClass({
     this.setState({ fetchError: null });
 
     var query = new Parse.Query(ApprovedGuestBookEntry);
+    query.descending("createdAt");
     query.include("guestBookEntry");
     query.limit(10);
     query.find({
@@ -29,6 +30,7 @@ var GuestBook = React.createClass({
             authorName: entry.get("authorName"),
             entryDate: entry.createdAt,
             id: entry.id,
+            location: entry.get("location"),
             messageText: entry.get("messageText")
           };
         });

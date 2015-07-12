@@ -11,6 +11,7 @@ var GuestBookInput = React.createClass({
     return {
       authorName: "",
       isLoading: false,
+      location: "",
       messageText: "",
       submissionError: null
     };
@@ -27,6 +28,7 @@ var GuestBookInput = React.createClass({
 
     var entry = new GuestBookEntry();
     entry.set("authorName", this.state.authorName);
+    entry.set("location", this.state.location);
     entry.set("messageText", this.state.messageText);
     entry.save(null, {
       success: function(entry) {
@@ -50,6 +52,12 @@ var GuestBookInput = React.createClass({
   _onNameChange: function(event) {
     this.setState({
       authorName: event.target.value
+    });
+  },
+
+  _onLocationChange: function(event) {
+    this.setState({
+      location: event.target.value
     });
   },
 
@@ -78,7 +86,7 @@ var GuestBookInput = React.createClass({
             htmlFor: "guest_book_input_name"
           }, "Name"),
           React.DOM.input({
-            className: "guestBookInput-authorNameInput",
+            className: "guestBookInput-input",
             disabled: this.state.isLoading,
             id: "guest_book_input_name",
             ref: "authorNameInput",
@@ -92,24 +100,40 @@ var GuestBookInput = React.createClass({
             htmlFor: "guest_book_input_message"
           }, "Message"),
           React.DOM.textarea({
-            className: "guestBookInput-messageTextInput",
+            className: "guestBookInput-input guestBookInput-messageTextInput",
             disabled: this.state.isLoading,
             id: "guest_book_input_message",
             onChange: this._onMessageChange,
             value: this.state.messageText
           })
         ),
-        React.DOM.button({
-          className: "guestBook-button guestBookInput-submitButton",
-          disabled: this.state.isLoading,
-          type: "submit"
-        }, "Submit"),
-        React.DOM.button({
-          className: "guestBook-button guestBookInput-cancelButton",
-          disabled: this.state.isLoading,
-          onClick: this.props.onCancelClick,
-          type: "button"
-        }, "Cancel")
+        React.DOM.div({ className: "guestBookInput-field" },
+          React.DOM.label({
+            className: "guestBookInput-label",
+            htmlFor: "guest_book_input_location"
+          }, "City"),
+          React.DOM.input({
+            className: "guestBookInput-input",
+            disabled: this.state.isLoading,
+            id: "guest_book_input_location",
+            onChange: this._onLocationChange,
+            placeholder: "Vancouver, BC",
+            value: this.state.location,
+          })
+        ),
+        React.DOM.div({ className: "guestBookInput-footer" },
+          React.DOM.button({
+            className: "guestBook-button guestBookInput-submitButton",
+            disabled: this.state.isLoading,
+            type: "submit"
+          }, "Submit"),
+          React.DOM.button({
+            className: "guestBook-button guestBookInput-cancelButton",
+            disabled: this.state.isLoading,
+            onClick: this.props.onCancelClick,
+            type: "button"
+          }, "Cancel")
+        )
       ),
       (this.state.authorName && this.state.authorName.length > 0) ||
       (this.state.messageText && this.state.messageText.length > 0)
@@ -122,6 +146,7 @@ var GuestBookInput = React.createClass({
                 authorName: this.state.authorName,
                 entryDate: new Date(),
                 key: "previewEntry",
+                location: this.state.location,
                 messageText: this.state.messageText
               })
             )

@@ -44,6 +44,7 @@
 
 .guestBook-entries {
   list-style: none;
+  margin: 30px 0;
   padding: 0;
   text-align: left;
 }
@@ -52,23 +53,31 @@
  * GuestBookEntryView
  */
 
-.guestBookEntryView-date {
-  color: #777;
-  font-size: smaller;
-  margin-left: 10px;
-}
-
 .guestBookEntryView {
-  padding: 15px 0;
+  padding: 10px 0;
 }
 
 .guestBookEntryView-name {
   font: bold 14px 'Georgia', serif;
 }
 
+.guestBookEntryView-date {
+  color: #777;
+  font-size: smaller;
+  margin-left: 10px;
+}
+
+.guestBookEntryView-location {
+  color: #777;
+  font-size: smaller;
+  font-style: italic;
+  margin-left: 10px;
+}
+
 .guestBookEntryView-message {
   margin: 0;
   margin-bottom: 15px;
+  margin-top: 5px;
 }
 
 /*
@@ -85,23 +94,23 @@
 
 .guestBookInput-label {
   display: inline-block;
+  float: left;
   margin-right: 15px;
   text-align: right;
   vertical-align: top;
-  width: 100px;
+  width: 80px;
 }
 
-.guestBookInput-authorNameInput,
-.guestBookInput-messageTextInput {
+.guestBookInput-input {
   border: 1px solid #ccc;
   border-radius: 2px;
+  display: block;
   font: 16px 'Georgia', serif;
   padding: 3px 5px;
   width: 250px;
 }
 
-.guestBookInput-authorNameInput[disabled],
-.guestBookInput-messageTextInput[disabled] {
+.guestBookInput-input[disabled] {
   background: #ddd;
 }
 
@@ -111,8 +120,12 @@
   resize: none;
 }
 
+.guestBookInput-footer {
+  margin: 20px 0 30px;
+}
+
 .guestBookInput-submitButton {
-  margin-left: 115px;
+  margin-left: 95px;
 }
 
 .guestBookInput-cancelButton {
