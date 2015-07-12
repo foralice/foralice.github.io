@@ -1,0 +1,91 @@
+body {
+  background: #fff;
+  color: #1f1f1f;
+  margin: 0;
+  font: 16px/22px 'Suranna', serif;
+  letter-spacing: 1px;
+}
+a {
+  text-decoration: none;
+}
+h1 {
+  font: 120px/1em 'Suranna', serif;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+em {
+  display: block;
+  font: 24px/24px 'Parisienne', script;
+  text-transform: lowercase;
+}
+.cjk {
+  font-size: 50px;
+  margin-bottom: 40px;
+}
+h3 {
+  font: 36px/36px 'Parisienne', script;
+  margin-bottom: 5px;
+}
+hr {
+  width: 100px;
+  margin: 50px auto;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.8);
+}
+.dates {
+  font: 18px/18px 'Suranna', serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.images {
+  float: left;
+  width: 35%;
+  max-width: 500px;
+  padding-left: 50px;
+}
+.images-full,
+.images-halves,
+.images-thirds {
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 5px;
+}
+.images-full {
+  height: 300px;
+}
+.images-full img {
+  width: 100%;
+}
+.images-halves {
+  height: 150px;
+}
+.images-halves img {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+.images-thirds {
+  height: 150px;
+}
+.images-thirds img {
+  display: inline-block;
+  vertical-align: top;
+  width: 33%;
+}
+.img-center {
+  background-image: url('../img/1965.jpeg');
+  background-size: cover;
+  width: 50%;
+}
+.content {
+  overflow: auto;
+  padding-top: 50px;
+  padding-right: 100px;
+  margin-left: 50%;
+  text-align: center;
+}
+.donations {
+  font-style: italic;
+  max-width: 400px;
+  margin: 0 auto;
+}
