@@ -111,6 +111,27 @@
   resize: none;
 }
 
+.guestBookInput-expandPhotoUploadButton {
+  border-bottom: 1px dotted #aaa;
+  color: #aaa;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 12px;
+  margin-left: 95px;
+}
+
+.guestBookInput-expandPhotoUploadButton:hover {
+  border-bottom-style: solid;
+}
+
+.guestBookInput-invalidFile {
+  color: red;
+  display: block;
+  font-size: 10px;
+  margin-left: 95px;
+}
+
 .guestBookInput-footer {
   margin: 20px 0 30px;
 }

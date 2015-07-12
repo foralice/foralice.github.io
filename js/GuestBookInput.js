@@ -11,8 +11,10 @@ var GuestBookInput = React.createClass({
     return {
       authorName: "",
       isLoading: false,
+      isPhotoUploadExpanded: false,
       location: "",
       messageText: "",
+      selectedPhoto: null,
       submissionError: null
     };
   },
@@ -21,21 +23,23 @@ var GuestBookInput = React.createClass({
     React.findDOMNode(this.refs.authorNameInput).focus();
   },
 
-  _onFormSubmit: function(event) {
+  _saveEntry: function(uploadedPhoto) {
     var me = this;
-    event.preventDefault();
-    this.setState({ isLoading: true });
-
     var entry = new GuestBookEntry();
+
     entry.set("authorName", this.state.authorName);
     entry.set("location", this.state.location);
     entry.set("messageText", this.state.messageText);
+    entry.set("uploadedPhoto", uploadedPhoto);
     entry.save(null, {
       success: function(entry) {
         me.setState({
           authorName: "",
           isLoading: false,
+          isPhotoUploadExpanded: false,
+          location: "",
           messageText: "",
+          selectedPhoto: null,
           submissionError: null
         });
         me.props.onEntrySaved(entry);
@@ -47,6 +51,24 @@ var GuestBookInput = React.createClass({
         });
       }
     });
+  },
+
+  _onFormSubmit: function(event) {
+    var me = this;
+    event.preventDefault();
+    this.setState({ isLoading: true });
+
+    if (this.state.selectedPhoto) {
+      var file = this.state.selectedPhoto;
+      var parseFile = new Parse.File(file.name, file);
+      parseFile.save().then(function() {
+        me._saveEntry(/*uploadedPhoto*/parseFile);
+      }, function(error) {
+        me.setState({ submissionError: error });
+      });
+    } else {
+      this._saveEntry();
+    }
   },
 
   _onNameChange: function(event) {
@@ -65,6 +87,19 @@ var GuestBookInput = React.createClass({
     this.setState({
       messageText: event.target.value
     });
+  },
+
+  _onPhotoChange: function(e) {
+    this.setState({ selectedPhoto: null });
+    var files = e.target.files || e.dataTransfer.files;
+    var file = files[0];
+    if (file) {
+      this.setState({ selectedPhoto: file });
+    }
+  },
+
+  _onExpandPhotoUploadClick: function(event) {
+    this.setState({ isPhotoUploadExpanded: true });
   },
 
   render: function() {
@@ -120,6 +155,23 @@ var GuestBookInput = React.createClass({
             value: this.state.location
           })
         ),
+        this.state.isPhotoUploadExpanded
+          ? React.DOM.div({ className: "guestBookInput-field" },
+              React.DOM.label({
+                className: "guestBookInput-label",
+                htmlFor: "guest_book_input_photo"
+              }, "Photo"),
+              React.DOM.input({
+                disabled: this.state.isLoading,
+                id: "guest_book_input_photo",
+                onChange: this._onPhotoChange,
+                type: "file"
+              })
+            )
+          : React.DOM.a({
+              className: "guestBookInput-expandPhotoUploadButton",
+              onClick: this._onExpandPhotoUploadClick
+            }, "Upload a Photo"),
         React.DOM.div({ className: "guestBookInput-footer" },
           React.DOM.button({
             className: "guestBook-button guestBookInput-submitButton",
