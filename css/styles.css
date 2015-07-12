@@ -32,16 +32,34 @@ hr {
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.8);
 }
+.wrapper {
+  position: relative;
+  overflow: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.content {
+  width: 50%;
+  padding: 50px 50px 50px 0;
+  text-align: center;
+  float: right;
+  box-sizing: border-box;
+}
 .dates {
   font: 18px/18px 'Suranna', serif;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
+.donations {
+  font-style: italic;
+  max-width: 400px;
+  margin: 0 auto;
+}
 .images {
   float: left;
-  width: 35%;
-  max-width: 500px;
-  padding-left: 50px;
+  width: 50%;
+  padding-right: 50px;
+  box-sizing: border-box;
 }
 .images-full,
 .images-halves,
@@ -51,14 +69,14 @@ hr {
   margin-bottom: 5px;
 }
 .images-full {
-  height: 300px;
+  height: 325px;
 }
 .images-full img {
   width: 100%;
 }
 .images-halves,
 .images-thirds {
-  height: 150px;
+  height: 175px;
 }
 .images-halves img {
   display: inline-block;
@@ -75,19 +93,18 @@ hr {
   background-size: cover;
   width: 50%;
 }
-.content {
-  overflow: hidden;
-  padding: 50px;
-  margin-left: 45%;
-  text-align: center;
-}
-.donations {
-  font-style: italic;
-  max-width: 400px;
-  margin: 0 auto;
+
+@media all and (max-width: 1150px) {
+  .images-full {
+    height: 300px;
+  }
+  .images-halves,
+  .images-thirds {
+    height: 150px;
+  }
 }
 
-@media all and (max-width: 1280px) {
+@media all and (max-width: 980px) {
   .images-full {
     height: 250px;
   }
@@ -97,9 +114,9 @@ hr {
   }
 }
 
-@media all and (max-width: 1020px) {
+@media all and (max-width: 800px) {
   .images-full {
-    height: 220px;
+    height: 200px;
   }
   .images-halves,
   .images-thirds {
@@ -107,17 +124,12 @@ hr {
   }
 }
 
-@media all and (max-width: 860px) {
-  .images-full {
-    height: 180px;
+@media all and (max-width: 680px) {
+  .content {
+    float: none;
+    width: 100%;
+    padding: 50px;
   }
-  .images-halves,
-  .images-thirds {
-    height: 75px;
-  }
-}
-
-@media all and (max-width: 720px) {
   .images {
     float: none;
     width: 100%;
@@ -127,16 +139,8 @@ hr {
   .images-full {
     height: 300px;
   }
-  .images-full:last-child {
-    display: none;
-  }
-  .images-halves {
-    height: 135px;
-  }
+  .images-halves,
   .images-thirds {
-    display: none;
-  }
-  .content {
-    margin: 0;
+    height: 135px;
   }
 }
