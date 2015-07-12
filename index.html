@@ -8,46 +8,18 @@
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
 </head>
 <body>
-  <h1>Alice Yu</h1>
+  <h1><em>In Memory of</em> Alice Yu</h1>
+  <span class="dates">July 3, 1957&mdash;July 6, 2015</span>
 
-  <div id="main">
-    <h1>You're ready to use Parse!</h1>
-
-    <p>Read the documentation and start building your JavaScript app:</p>
-
-    <ul>
-      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
-      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
-    </ul>
-
-    <div style="display:none" class="error">
-      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
-    </div>
-
-    <div style="display:none" class="success">
-      <p>We've also just created your first object using the following code:</p>
-
-        <code>
-          var TestObject = Parse.Object.extend("TestObject");<br/>
-          var testObject = new TestObject();<br/>
-          testObject.save({foo: "bar"});
-        </code>
-    </div>
-  </div>
+  <p>
+    In lieu of flowers, please consider donating to either
+      <a href="http://bccancerfoundation.com/">BCCF</a>
+      or
+      <a href="http://vcac.bc.ca/">VCAC</a>
+  </p>
 
   <script type="text/javascript">
     Parse.initialize("BdGt7LYkulVUnMaH0QK76zgyg0H7JVPULUtirJ2H", "rpXhido42viZZSdWi4cQFtMZzlT5yJxwNEUaTNqY");
-
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-      testObject.save({foo: "bar"}, {
-      success: function(object) {
-        $(".success").show();
-      },
-      error: function(model, error) {
-        $(".error").show();
-      }
-    });
   </script>
 </body>
 </html>
