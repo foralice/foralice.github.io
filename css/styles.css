@@ -56,16 +56,14 @@ hr {
 .images-full img {
   width: 100%;
 }
-.images-halves {
+.images-halves,
+.images-thirds {
   height: 150px;
 }
 .images-halves img {
   display: inline-block;
   vertical-align: top;
   width: 50%;
-}
-.images-thirds {
-  height: 150px;
 }
 .images-thirds img {
   display: inline-block;
@@ -78,14 +76,67 @@ hr {
   width: 50%;
 }
 .content {
-  overflow: auto;
-  padding-top: 50px;
-  padding-right: 100px;
-  margin-left: 50%;
+  overflow: hidden;
+  padding: 50px;
+  margin-left: 45%;
   text-align: center;
 }
 .donations {
   font-style: italic;
   max-width: 400px;
   margin: 0 auto;
+}
+
+@media all and (max-width: 1280px) {
+  .images-full {
+    height: 250px;
+  }
+  .images-halves,
+  .images-thirds {
+    height: 120px;
+  }
+}
+
+@media all and (max-width: 1020px) {
+  .images-full {
+    height: 220px;
+  }
+  .images-halves,
+  .images-thirds {
+    height: 100px;
+  }
+}
+
+@media all and (max-width: 860px) {
+  .images-full {
+    height: 180px;
+  }
+  .images-halves,
+  .images-thirds {
+    height: 75px;
+  }
+}
+
+@media all and (max-width: 720px) {
+  .images {
+    float: none;
+    width: 100%;
+    padding: 0;
+    max-width: none;
+  }
+  .images-full {
+    height: 300px;
+  }
+  .images-full:last-child {
+    display: none;
+  }
+  .images-halves {
+    height: 135px;
+  }
+  .images-thirds {
+    display: none;
+  }
+  .content {
+    margin: 0;
+  }
 }
