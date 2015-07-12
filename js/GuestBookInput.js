@@ -117,8 +117,7 @@ var GuestBookInput = React.createClass({
             disabled: this.state.isLoading,
             id: "guest_book_input_location",
             onChange: this._onLocationChange,
-            placeholder: "Vancouver, BC",
-            value: this.state.location,
+            value: this.state.location
           })
         ),
         React.DOM.div({ className: "guestBookInput-footer" },
