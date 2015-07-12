@@ -44,6 +44,7 @@ hr {
   text-align: center;
   float: right;
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 .dates {
   font: 18px/18px 'Suranna', serif;
@@ -60,6 +61,7 @@ hr {
   width: 50%;
   padding-right: 50px;
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 .images-full,
 .images-halves,
