@@ -15,12 +15,25 @@ var GuestBookInput = React.createClass({
       location: "",
       messageText: "",
       selectedPhoto: null,
+      selectedPhotoSrc: null,
       submissionError: null
     };
   },
 
   componentDidMount: function() {
     React.findDOMNode(this.refs.authorNameInput).focus();
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if (this.state.selectedPhoto &&
+        (this.state.selectedPhoto !== prevState.selectedPhoto)) {
+      var me = this;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        me.setState({ selectedPhotoSrc: e.target.result });
+      }
+      reader.readAsDataURL(this.state.selectedPhoto);
+    }
   },
 
   _saveEntry: function(uploadedPhoto) {
@@ -40,6 +53,7 @@ var GuestBookInput = React.createClass({
           location: "",
           messageText: "",
           selectedPhoto: null,
+          selectedPhotoSrc: null,
           submissionError: null
         });
         me.props.onEntrySaved(entry);
@@ -94,7 +108,10 @@ var GuestBookInput = React.createClass({
     var files = e.target.files || e.dataTransfer.files;
     var file = files[0];
     if (file) {
-      this.setState({ selectedPhoto: file });
+      this.setState({
+        selectedPhoto: file,
+        selectedPhotoSrc: null
+      });
     }
   },
 
@@ -196,9 +213,10 @@ var GuestBookInput = React.createClass({
               React.createElement(GuestBookEntryView, {
                 authorName: this.state.authorName,
                 entryDate: new Date(),
+                imgSrc: this.state.selectedPhotoSrc,
                 key: "previewEntry",
                 location: this.state.location,
-                messageText: this.state.messageText
+                messageText: this.state.messageText,
               })
             )
           : null

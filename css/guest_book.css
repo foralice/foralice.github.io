@@ -45,6 +45,7 @@
  */
 
 .guestBookEntryView {
+  overflow: hidden;
   padding: 10px 0;
 }
 
@@ -69,6 +70,11 @@
   margin: 0;
   margin-bottom: 15px;
   margin-top: 5px;
+}
+
+.guestBookEntryView-photo {
+  float: right;
+  width: 115px;
 }
 
 /*

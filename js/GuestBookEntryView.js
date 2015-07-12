@@ -5,6 +5,7 @@ var MONTHS = ["January", "February", "March", "April", "May", "June",
  * interface Props {
  *   authorName: string;
  *   entryDate: Date;
+ *   imgSrc: string;
  *   location: string;
  *   messageText: string;
  * }
@@ -36,6 +37,12 @@ var GuestBookEntryView = React.createClass({
     return React.DOM.div({
         className: "guestBookEntryView"
       },
+      this.props.imgSrc
+        ? React.DOM.img({
+            className: "guestBookEntryView-photo",
+            src: this.props.imgSrc
+          })
+        : null,
       React.DOM.span({
         className: "guestBookEntryView-name"
       }, this.props.authorName),
