@@ -4,7 +4,9 @@ var GuestBook = React.createClass({
   getInitialState: function() {
     return {
       entries: null,
-      fetchError: null
+      fetchError: null,
+      isInputExpanded: false,
+      showEntryConfirmation: false
     };
   },
 
@@ -16,13 +18,17 @@ var GuestBook = React.createClass({
     var me = this;
     this.setState({ fetchError: null });
 
-    var query = new Parse.Query(GuestBookEntry);
+    var query = new Parse.Query(ApprovedGuestBookEntry);
+    query.include("guestBookEntry");
     query.limit(10);
     query.find({
       success: function(results) {
-        var entries = results.map(function(entry) {
+        var entries = results.map(function(approvedEntry) {
+          var entry = approvedEntry.get("guestBookEntry");
           return {
             authorName: entry.get("authorName"),
+            entryDate: entry.createdAt,
+            id: entry.id,
             messageText: entry.get("messageText")
           };
         });
@@ -38,17 +44,42 @@ var GuestBook = React.createClass({
   },
 
   _onInputEntrySaved: function(entry) {
-    this._fetchEntries();
+    this.setState({
+      isInputExpanded: false,
+      showEntryConfirmation: true
+    });
+  },
+
+  _onExpandInputClick: function() {
+    this.setState({ isInputExpanded: true });
+  },
+
+  _onInputCancelClick: function() {
+    this.setState({ isInputExpanded: false });
   },
 
   render: function() {
     return React.DOM.div({ className: "guestBook" },
-      !(this.state.fetchError || this.state.entries)
-          ? React.DOM.span({ className: "guestBook-loading" }, "Loading")
-          : null,
+      this.state.isInputExpanded
+          ? React.createElement(GuestBookInput, {
+              onEntrySaved: this._onInputEntrySaved,
+              onCancelClick: this._onInputCancelClick,
+            })
+          : (this.state.showEntryConfirmation
+              ? null
+              : React.DOM.button({
+                  className: "guestBook-button",
+                  onClick: this._onExpandInputClick
+                }, "Add a Message")),
       this.state.fetchError
           ? React.DOM.div({ className: "guestBook-error" },
               this.state.fetchError.message
+            )
+          : null,
+      this.state.showEntryConfirmation
+          ? React.DOM.div({ className: "guestBook-entryConfirmed" },
+              "Thank you. " +
+                "Messages will be reviewed prior to posting."
             )
           : null,
       this.state.entries
@@ -59,10 +90,7 @@ var GuestBook = React.createClass({
                 );
               })
             )
-          : null,
-      React.createElement(GuestBookInput, {
-        onEntrySaved: this._onInputEntrySaved
-      })
+          : null
     );
   }
 });

@@ -1,6 +1,7 @@
 /**
  * interface Props {
  *   onEntrySaved: (entry: GuestBookEntry) => any;
+ *   onInputCancelClick: React.MouseEventHandler;
  * }
  */
 var GuestBookInput = React.createClass({
@@ -13,6 +14,10 @@ var GuestBookInput = React.createClass({
       messageText: "",
       submissionError: null
     };
+  },
+
+  componentDidMount: function() {
+    React.findDOMNode(this.refs.authorNameInput).focus();
   },
 
   _onFormSubmit: function(event) {
@@ -56,7 +61,8 @@ var GuestBookInput = React.createClass({
 
   render: function() {
     return React.DOM.div({
-        className: "guestBookInput"
+        className: "guestBookInput" +
+          (this.state.isLoading ? " is-loading" : "")
       },
       this.state.submissionError
           ? React.DOM.div({
@@ -73,7 +79,9 @@ var GuestBookInput = React.createClass({
           }, "Name"),
           React.DOM.input({
             className: "guestBookInput-authorNameInput",
+            disabled: this.state.isLoading,
             id: "guest_book_input_name",
+            ref: "authorNameInput",
             onChange: this._onNameChange,
             value: this.state.authorName,
           })
@@ -85,23 +93,39 @@ var GuestBookInput = React.createClass({
           }, "Message"),
           React.DOM.textarea({
             className: "guestBookInput-messageTextInput",
+            disabled: this.state.isLoading,
             id: "guest_book_input_message",
             onChange: this._onMessageChange,
             value: this.state.messageText
           })
         ),
         React.DOM.button({
-          className: "guestBookInput-submitButton"
-        }, "Submit")
+          className: "guestBook-button guestBookInput-submitButton",
+          disabled: this.state.isLoading,
+          type: "submit"
+        }, "Submit"),
+        React.DOM.button({
+          className: "guestBook-button guestBookInput-cancelButton",
+          disabled: this.state.isLoading,
+          onClick: this.props.onCancelClick,
+          type: "button"
+        }, "Cancel")
       ),
-      React.DOM.span({
-        className: "guestBookInput-previewLabel"
-      }, "Preview"),
-      React.createElement(GuestBookEntryView, {
-        authorName: this.state.authorName,
-        entryDate: Date.now(),
-        messageText: this.state.messageText
-      })
+      (this.state.authorName && this.state.authorName.length > 0) ||
+      (this.state.messageText && this.state.messageText.length > 0)
+          ? React.DOM.div({ className: "guestBookInput-preview" },
+              React.DOM.span({
+                className: "guestBookInput-previewLabel",
+                key: "previewLabel"
+              }, "Preview"),
+              React.createElement(GuestBookEntryView, {
+                authorName: this.state.authorName,
+                entryDate: new Date(),
+                key: "previewEntry",
+                messageText: this.state.messageText
+              })
+            )
+          : null
     );
   }
 });
