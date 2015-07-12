@@ -1,0 +1,35 @@
+
+.guestBookInput-field {
+  margin-bottom: 10px;
+}
+
+.guestBookInput-label {
+  display: inline-block;
+  margin-right: 15px;
+  text-align: right;
+  vertical-align: top;
+  width: 100px;
+}
+
+.guestBookInput-authorNameInput,
+.guestBookInput-messageTextInput {
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  padding: 3px 5px;
+  width: 250px;
+}
+
+.guestBookInput-messageTextInput {
+  min-height: 75px;
+  resize: none;
+}
+
+.guestBookInput-submitButton {
+  margin-left: 115px;
+}
+
+.guestBookInput-previewLabel {
+  color: #aaa;
+  font-size: 10px;
+  text-transform: uppercase;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For Alice&mdash;Guest Book</title>
+  <link rel="stylesheet" type="text/css" href="css/guest_book.css"></link>
+</head>
+<body>
+  <div id="guest_book"></div>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+  <script type="text/javascript">
+    Parse.initialize("BdGt7LYkulVUnMaH0QK76zgyg0H7JVPULUtirJ2H", "rpXhido42viZZSdWi4cQFtMZzlT5yJxwNEUaTNqY");
+    var GuestBookEntry = Parse.Object.extend("GuestBookEntry");
+  </script>
+
+  <script type="text/javascript" src="http://fb.me/react-0.13.3.js"></script>
+  <script type="text/javascript" src="js/GuestBookEntryView.js"></script>
+  <script type="text/javascript" src="js/GuestBookInput.js"></script>
+  <script type="text/javascript" src="js/GuestBook.js"></script>
+  <script type="text/javascript">
+    React.render(
+      React.createElement(GuestBook),
+      document.getElementById("guest_book")
+    );
+  </script>
+</body>
+</html>
