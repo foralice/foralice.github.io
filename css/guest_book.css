@@ -74,6 +74,7 @@
 
 .guestBookEntryView-photo {
   float: right;
+  margin-left: 10px;
   width: 115px;
 }
 
