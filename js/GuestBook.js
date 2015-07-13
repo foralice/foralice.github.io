@@ -26,10 +26,12 @@ var GuestBook = React.createClass({
       success: function(results) {
         var entries = results.map(function(approvedEntry) {
           var entry = approvedEntry.get("guestBookEntry");
+          var uploadedPhoto = entry.get("uploadedPhoto");
           return {
             authorName: entry.get("authorName"),
             entryDate: entry.createdAt,
             id: entry.id,
+            imgSrc: uploadedPhoto && uploadedPhoto.url(),
             location: entry.get("location"),
             messageText: entry.get("messageText")
           };
