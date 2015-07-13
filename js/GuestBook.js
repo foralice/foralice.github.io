@@ -21,7 +21,6 @@ var GuestBook = React.createClass({
     var query = new Parse.Query(ApprovedGuestBookEntry);
     query.descending("createdAt");
     query.include("guestBookEntry");
-    query.limit(10);
     query.find({
       success: function(results) {
         var entries = results.map(function(approvedEntry) {
